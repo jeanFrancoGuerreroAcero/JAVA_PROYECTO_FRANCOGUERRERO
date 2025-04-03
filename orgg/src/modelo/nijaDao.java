@@ -58,10 +58,10 @@ public class nijaDao {
         return listaMisiones;
     }
 
-    public static ArrayList<String> mostarMisionesCompletadas(int id) throws SQLException {
-        String sql = "select n.nombre, mi.estado, m.descripcion from Ninja n inner join MisionNinja mi on n.id = mi.id_ninja inner join Mision m on mi.id_mision = m.id where mi.estado=0 and n.id=?";
+    public static ArrayList<Mision> mostarMisionesCompletadas(int id) throws SQLException {
+        String sql = "select n.nombre,  m.descripcion from Ninja n inner join MisionNinja mi on n.id = mi.id_ninja inner join Mision m on mi.id_mision = m.id where mi.estado=0 and n.id=?";
 
-        ArrayList<String> listaMisionesCompletadas = new ArrayList<>();
+        ArrayList<Mision> listaMisionesCompletadas = new ArrayList<>();
         try (Connection connect = conexion.con(); PreparedStatement query =  connect.prepareStatement(sql)){
             query.setInt(1,id);
 
@@ -69,9 +69,9 @@ public class nijaDao {
 
             while(mi.next()){
                 String nombre = mi.getString("n.nombre");
-                String misiom = mi.getString("m.descripcion");
+                String descripcion = mi.getString("m.descripcion");
 
-                listaMisionesCompletadas.add(nombre,misiom);
+                listaMisionesCompletadas.add(new Mision(nombre,descripcion));
             }
 
 
@@ -93,15 +93,35 @@ public class nijaDao {
             int filas = query.executeUpdate();
 
             if(filas > 0){
-                System.out.println("se agrago la mision");
+                System.out.println("se agrego la mision");
             }
             else{
-                System.out.println("no agrago la mision");
+                System.out.println("no se agrego la mision");
             }
         }
         catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+
+    public static ArrayList<MisionNinja> listaCompletadas() throws SQLException {
+        String sql = "select m.descripcion, mi.estado, mi.fechaFin from MisionNinja mi inner join Mision m on mi.id_mision = m.id where mi.estado=1";
+
+        ArrayList<MisionNinja> listaTerminadas = new ArrayList<>();
+
+        try (Connection connect = conexion.con(); PreparedStatement query =  connect.prepareStatement(sql)){
+            ResultSet ter = query.executeQuery();
+
+            while (ter.next()){
+                int estado = ter.getInt("mi.estado");
+                String fechaFin = ter.getString("mi.fechaFin");
+                String descripcion = ter.getString("m.descripcion");
+
+                listaTerminadas.add(new MisionNinja(estado,fechaFin,descripcion));
+            }
+        }
+        return listaTerminadas;
     }
 
 }

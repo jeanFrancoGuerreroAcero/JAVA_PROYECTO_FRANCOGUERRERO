@@ -27,6 +27,7 @@ public class ConstructorNinja {
             System.out.println("2. ver las misiones disponibles por un ninja en especifico");
             System.out.println("3. Ver las misiones completadas por un ninja en especifico");
             System.out.println("4. Asignar una mision a un ninja");
+            System.out.println("6. Mostrar las misiones terminadas por los ninjas");
 
             int opcion = sc.nextInt();
 
@@ -39,6 +40,9 @@ public class ConstructorNinja {
                     break;
                 case 3:
                     vistaNinja.mostrarterminadas();
+                    break;
+                case 6:
+                    vistaNinja.mostrarTerminadasFinal();
                     break;
             }
         }

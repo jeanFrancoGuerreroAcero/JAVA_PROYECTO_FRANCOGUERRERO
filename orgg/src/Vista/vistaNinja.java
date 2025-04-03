@@ -1,6 +1,8 @@
 package orgg.src.Vista;
 
 import orgg.src.Constructor.ConstructorNinja;
+import orgg.src.modelo.Mision;
+import orgg.src.modelo.MisionNinja;
 import orgg.src.modelo.NInja;
 import orgg.src.modelo.nijaDao;
 
@@ -27,7 +29,7 @@ public class vistaNinja {
         List<String> listsMostrar = nijaDao.mostarMisionesNinja(id);
 
         for (String el: listsMostrar){
-            System.out.println(el);
+            System.out.println("La mision que esta disponible para este ninja: " + el);
         }
     }
 
@@ -36,9 +38,9 @@ public class vistaNinja {
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
 
-        List<String> listsMostrar = nijaDao.mostarMisionesCompletadas(id);
+        List<Mision> listsMostrar = nijaDao.mostarMisionesCompletadas(id);
 
-        for (String el: listsMostrar){
+        for (Mision el: listsMostrar){
             System.out.println(el);
         }
     }
@@ -47,6 +49,17 @@ public class vistaNinja {
         System.out.println("ingrese el id del ninja");
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Ingrese la descripcion de la mision: ");
+        String descripcion = sc.nextLine();
+        System.out.println("Ingrese el rango de la mision");
     }
 
+    public void mostrarTerminadasFinal() throws SQLException {
+        List<MisionNinja> lisTerminadas = nijaDao.listaCompletadas();
+
+        for(MisionNinja mi: lisTerminadas){
+            System.out.println(mi);
+        }
+    }
 }

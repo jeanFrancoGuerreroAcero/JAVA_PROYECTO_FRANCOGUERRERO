@@ -12,7 +12,7 @@ public class NInja {
         this.nombre = nombre;
         this.Rango = rango;
         this.aldea = aldea;
-
+        this.habilidad = habilidad;
     }
 
     public int getId() {
@@ -50,11 +50,6 @@ public class NInja {
 
     @Override
     public String toString() {
-        return "" +
-                "" + nombre + '\'' +
-                "" + Rango + '\'' +
-                "" + aldea + '\'' +
-                "" + habilidad + '\'' +
-                '}';
+        return "Nombre: " + nombre + " " + "Rango: " + Rango + " " + "Aldea: " + aldea + " " + "Habilidad: " + habilidad;
     }
 }

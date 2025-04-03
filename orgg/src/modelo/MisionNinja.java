@@ -7,6 +7,7 @@ public class MisionNinja {
     int estado;
     int id_nija;
     int id_mision;
+    String descripcion;
 
     public MisionNinja(int id, String fechaInicio, String fechaFin, int estado, int id_nija, int id_mision) {
         this.id = id;
@@ -15,6 +16,12 @@ public class MisionNinja {
         this.estado = estado;
         this.id_nija = id_nija;
         this.id_mision = id_mision;
+    }
+
+    public MisionNinja(int estado, String fechaFin, String descripcion) {
+        this.estado = estado;
+        this.fechaFin = fechaFin;
+        this.descripcion = descripcion;
     }
 
     public int getId() {
@@ -63,5 +70,10 @@ public class MisionNinja {
 
     public void setId_mision(int id_mision) {
         this.id_mision = id_mision;
+    }
+
+    @Override
+    public String toString() {
+        return "mision terminada: "+ " " +"fechaFin: " + fechaFin + " " + "Descripcion: " + descripcion ;
     }
 }
