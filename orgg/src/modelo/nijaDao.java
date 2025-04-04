@@ -81,14 +81,16 @@ public class nijaDao {
         return listaMisionesCompletadas;
     }
 
-    public static void newMision(Mision mimpush) throws SQLException {
-        String sql = "insert into Mision(id,descripcion,Rango,recompensa) values(?,?,?,?)";
+    public static void newMision(MisionNinja mi) throws SQLException {
+        String sql = "insert into MisionNinja(id,fechaInicio,fechaFin,estado,id_ninja,id_mision) values(?,?,?,?,?,?)";
 
         try (Connection connect = conexion.con(); PreparedStatement query =  connect.prepareStatement(sql)){
-            query.setInt(1,mimpush.getId());
-            query.setString(2,mimpush.getDescripcion());
-            query.setString(3,mimpush.getRando());
-            query.setString(4,mimpush.getRecompensa());
+            query.setInt(1, mi.getId());
+            query.setString(2, mi.getFechaInicio());
+            query.setString(3, mi.getFechaFin());
+            query.setInt(4, mi.getEstado());
+            query.setInt(5, mi.getId_nija());
+            query.setInt(6, mi.getId_mision());
 
             int filas = query.executeUpdate();
 
@@ -136,5 +138,6 @@ public class nijaDao {
         }
         return listaTerminadas;
     }
+
 
 }

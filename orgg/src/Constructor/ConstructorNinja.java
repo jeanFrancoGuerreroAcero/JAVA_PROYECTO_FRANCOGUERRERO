@@ -42,6 +42,8 @@ public class ConstructorNinja {
                 case 3:
                     vistaNinja.mostrarterminadas();
                     break;
+                case 4:
+                    vistaNinja.añadirMision();
                 case 5:
                     vistaNinja.finalizarMision();
                 case 6:

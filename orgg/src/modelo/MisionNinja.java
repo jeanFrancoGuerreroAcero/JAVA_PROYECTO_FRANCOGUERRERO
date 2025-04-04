@@ -28,6 +28,14 @@ public class MisionNinja {
         this.id = id;
     }
 
+    public MisionNinja(int id, String descripcion, int estado, int idNinja, int idMision) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.id_nija = idNinja;
+        this.id_mision = idMision;
+    }
+
     public int getId() {
         return id;
     }
