@@ -55,6 +55,18 @@ public class vistaNinja {
         System.out.println("Ingrese el rango de la mision");
     }
 
+    public MisionNinja finalizarMision() throws SQLException {
+        System.out.println("ingrese el id de la mision que deseas finalizar");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+
+        MisionNinja mision = new MisionNinja(id);
+
+        nijaDao.finalizarMision(id);
+
+        return mision;
+    }
+
     public void mostrarTerminadasFinal() throws SQLException {
         List<MisionNinja> lisTerminadas = nijaDao.listaCompletadas();
 

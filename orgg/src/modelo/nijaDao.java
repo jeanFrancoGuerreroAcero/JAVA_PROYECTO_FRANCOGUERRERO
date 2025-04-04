@@ -104,6 +104,19 @@ public class nijaDao {
         }
     }
 
+    public static void finalizarMision(int id) throws SQLException {
+        String sql = "update MisionNinja set estado=1 where id=?";
+
+        try (Connection connect = conexion.con(); PreparedStatement query =  connect.prepareStatement(sql)){
+            query.setInt(1,id);
+
+            query.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     public static ArrayList<MisionNinja> listaCompletadas() throws SQLException {
         String sql = "select m.descripcion, mi.estado, mi.fechaFin from MisionNinja mi inner join Mision m on mi.id_mision = m.id where mi.estado=1";

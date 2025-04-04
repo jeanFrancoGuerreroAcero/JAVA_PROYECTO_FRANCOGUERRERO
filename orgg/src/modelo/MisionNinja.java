@@ -24,6 +24,10 @@ public class MisionNinja {
         this.descripcion = descripcion;
     }
 
+    public MisionNinja(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
